@@ -1,4 +1,4 @@
-# JSON-CS Project
+# json-cs
 
 Port of JSON Parser from TypeScript to .NET 8.0 and C# 12
 
