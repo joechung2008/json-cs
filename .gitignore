@@ -1,0 +1,48 @@
+# .NET / C# .gitignore
+
+# Build results
+bin/
+obj/
+out/
+TestResults/
+*.exe
+*.dll
+*.pdb
+*.appx
+*.appxbundle
+*.msix
+*.msixbundle
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# VS Code
+.vscode/
+
+# Visual Studio
+.vs/
+*.dbmdl
+*.log
+
+# NuGet packages
+*.nupkg
+# The packages folder can be ignored if not using package restore
+packages/
+# Uncomment if using NuGet package restore
+# !packages/build/
+
+# Others
+*.swp
+*.bak
+*.tmp
+*.~*
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Publish
+publish/
+*.publishsettings
