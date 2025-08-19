@@ -77,13 +77,53 @@ public class NumberTests
     }
 
     [Fact]
-    public void Parse_NumberWithTrailingWhitespace_ReturnsNumberToken()
+    public void Parse_NumberWithTrailingSpace_ReturnsNumberToken()
     {
         var token = Shared.Parsers.Number.Parse("42 ");
         Assert.NotNull(token);
         Assert.IsType<NumberToken>(token);
         Assert.Equal(42d, token.Value);
-        Assert.Equal(2, token.Skip);
+        Assert.Equal(3, token.Skip);
+    }
+
+    [Fact]
+    public void Parse_NumberWithTrailingTab_ReturnsNumberToken()
+    {
+        var token = Shared.Parsers.Number.Parse("123\t");
+        Assert.NotNull(token);
+        Assert.IsType<NumberToken>(token);
+        Assert.Equal(123d, token.Value);
+        Assert.Equal(4, token.Skip);
+    }
+
+    [Fact]
+    public void Parse_DecimalWithTrailingNewline_ReturnsNumberToken()
+    {
+        var token = Shared.Parsers.Number.Parse("3.14\n");
+        Assert.NotNull(token);
+        Assert.IsType<NumberToken>(token);
+        Assert.Equal(3.14d, token.Value);
+        Assert.Equal(5, token.Skip);
+    }
+
+    [Fact]
+    public void Parse_ExponentWithTrailingCarriageReturn_ReturnsNumberToken()
+    {
+        var token = Shared.Parsers.Number.Parse("8.9e2\r");
+        Assert.NotNull(token);
+        Assert.IsType<NumberToken>(token);
+        Assert.Equal(890d, token.Value);
+        Assert.Equal(6, token.Skip);
+    }
+
+    [Fact]
+    public void Parse_ExponentWithTrailingSpaces_ReturnsNumberToken()
+    {
+        var token = Shared.Parsers.Number.Parse("-0.5E-1  ");
+        Assert.NotNull(token);
+        Assert.IsType<NumberToken>(token);
+        Assert.Equal(-0.05d, token.Value);
+        Assert.Equal(9, token.Skip);
     }
 
     [Fact]

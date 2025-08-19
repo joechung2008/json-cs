@@ -174,6 +174,10 @@ public partial class Number
                     {
                         mode = Mode.End;
                     }
+                    else if (Whitespace().IsMatch(ch))
+                    {
+                        mode = Mode.End;
+                    }
                     else
                     {
                         throw new Exception($"Expected digit, actual '{ch}'");
@@ -191,6 +195,12 @@ public partial class Number
         if (mode == Mode.Characteristic || mode == Mode.ExponentFirstDigit)
         {
             throw new Exception($"Incomplete expression, mode = {mode}");
+        }
+
+        // Skip trailing whitespace after parsing the number
+        while (pos < s.Length && Whitespace().IsMatch(s.Substring(pos, 1)))
+        {
+            pos++;
         }
 
         return new NumberToken(pos, double.Parse(value));
