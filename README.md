@@ -111,7 +111,7 @@ POST http://localhost:5132/api/v1/parse
 Content-Type: application/json
 
 {
-"foo": 123,
-"bar": [true, false, null]
+    "foo": 123,
+    "bar": [true, false, null]
 }
 ```
