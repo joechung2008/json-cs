@@ -21,6 +21,7 @@ TestResults/
 
 # VS Code
 .vscode/
+!.vscode/extensions.json
 
 # Visual Studio
 .vs/

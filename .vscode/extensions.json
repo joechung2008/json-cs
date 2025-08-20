@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "ms-dotnettools.dotnet-install",
+        "ms-dotnettools.csharp",
+        "ms-dotnettools.csdevkit"
+    ]
+}
