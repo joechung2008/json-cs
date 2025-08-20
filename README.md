@@ -75,3 +75,43 @@ cat input.json | dotnet run --project CLI
 ```
 
 This will read JSON data from `input.json` and process it via the CLI.
+
+## API Server
+
+Minimal ASP.NET Core API exposing /api/v1/parse for JSON parsing using the Shared library.
+
+### Run API Server
+
+```sh
+dotnet run --project API/API.csproj
+```
+
+Starts the API server at <http://localhost:5132> (or the port shown in the terminal).
+
+### Run API Server with Watcher
+
+```sh
+dotnet watch run --project API/API.csproj
+```
+
+Starts the API server and restarts automatically when code changes are detected.
+
+### Test API with REST Client (VS Code Extension)
+
+1. Install the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) in VS Code.
+
+2. Create a `.rest` file (e.g., `testdata/all.rest`) in your API project.
+
+3. Click "Send Request" above the request in VS Code to see the response.
+
+Example request to test the API:
+
+```http
+POST http://localhost:5132/api/v1/parse
+Content-Type: application/json
+
+{
+"foo": 123,
+"bar": [true, false, null]
+}
+```

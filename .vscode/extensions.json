@@ -2,6 +2,7 @@
     "recommendations": [
         "ms-dotnettools.dotnet-install",
         "ms-dotnettools.csharp",
-        "ms-dotnettools.csdevkit"
+        "ms-dotnettools.csdevkit",
+        "humao.rest-client"
     ]
 }
