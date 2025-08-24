@@ -5,7 +5,21 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v2", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Version = "2.0",
+        Title = "API (Swagger 2.0)",
+        Description = "OpenAPI 2.0 (Swagger 2.0) documentation"
+    });
+    options.SwaggerDoc("v3", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Version = "3.0",
+        Title = "API (OpenAPI 3.0)",
+        Description = "OpenAPI 3.0 documentation"
+    });
+});
 
 var app = builder.Build();
 
@@ -13,7 +27,11 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v2/swagger.json", "API (Swagger 2.0)");
+        options.SwaggerEndpoint("/swagger/v3/swagger.json", "API (OpenAPI 3.0)");
+    });
 }
 
 // Disable HTTPS redirection
