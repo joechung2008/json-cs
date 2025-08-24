@@ -4,6 +4,7 @@
 
 - **Purpose:** Port of a TypeScript JSON parser to .NET 8.0 (C# 12).
 - **Major Components:**
+  - `API/`: ASP.NET Core minimal API exposing `POST /api/v1/parse` for JSON parsing via the Shared library.
   - `CLI/`: Command-line interface for parsing JSON input.
   - `Shared/`: Core library, including token models and parser logic.
     - `Models/`: JSON token types (e.g., `ArrayToken`, `ObjectToken`, etc.).
@@ -35,7 +36,6 @@
 
 ## Examples
 
-- To add a new JSON type, create a token in `Shared/Models/` and a parser in `Shared/Parsers/`, then add tests in `Shared.Tests/Parsers/`.
 - To debug parsing, run CLI interactively and inspect output/errors.
 
 ## Key Files
@@ -46,22 +46,16 @@
 
 ---
 
-**For questions or unclear conventions, review `README.md` or ask for clarification.**
+## API Project
 
----
-
-## API Project (Added in Recent Updates)
-
-- The solution now includes an `API/` project using ASP.NET Core minimal API.
+- The solution includes an `API/` project using ASP.NET Core minimal API.
 - Main endpoint: `POST /api/v1/parse`
   - Accepts a JSON body, parses it using the Shared library, and returns the result as JSON.
   - Errors are returned as JSON objects with a message and code.
-- To run the API server:
-  ```sh
-  dotnet run --project API/API.csproj
-  ```
-- To run the API server with automatic restart on code changes:
-  ```sh
-  dotnet watch run --project API/API.csproj
-  ```
-- You can test the API using the REST Client VS Code extension and `.rest` files in `API/testdata/`.
+- For instructions on running the API server and testing with REST Client, see the "API Server" section in `README.md`.
+- Copilot should ensure API requests use the correct endpoint and headers as shown in `.rest` files in `API/testdata/`.
+- When generating code or tests for the API, follow the conventions in the Shared library for parsing and error handling.
+
+---
+
+**For questions or unclear conventions, review `README.md` or ask for clarification.**
