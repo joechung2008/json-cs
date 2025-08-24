@@ -1,11 +1,10 @@
-﻿// CLI/Program.cs (top-level statements)
-using Shared;
-
-// Read all input from stdin
-string input = Console.In.ReadToEnd().TrimEnd();
+﻿using Shared;
 
 try
 {
+    // Read all input from stdin
+    string input = Console.In.ReadToEnd().TrimEnd();
+
     // Parse input using Shared JSON parser
     var parsed = JSON.Parse(input);
 
