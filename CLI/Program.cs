@@ -2,7 +2,7 @@
 using Shared;
 
 // Read all input from stdin
-string input = Console.In.ReadToEnd();
+string input = Console.In.ReadToEnd().TrimEnd();
 
 try
 {
