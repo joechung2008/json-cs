@@ -3,7 +3,11 @@
 try
 {
     // Read all input from stdin
-    string input = Console.In.ReadToEnd().TrimEnd();
+    string input;
+    using (var reader = new System.IO.StreamReader(Console.OpenStandardInput()))
+    {
+        input = reader.ReadToEnd();
+    }
 
     // Parse input using Shared JSON parser
     var parsed = JSON.Parse(input);
