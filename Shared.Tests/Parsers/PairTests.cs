@@ -57,6 +57,6 @@ public class PairTests
     [Fact]
     public void Parse_InvalidPair_ThrowsException()
     {
-        Assert.Throws<System.Exception>(() => Shared.Parsers.Pair.Parse("a:1"));
+        Assert.Throws<Exception>(() => Shared.Parsers.Pair.Parse("a:1"));
     }
 }

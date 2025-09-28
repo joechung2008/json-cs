@@ -3,12 +3,12 @@ using System.Text.RegularExpressions;
 
 namespace Shared.Parsers;
 
-public partial class Array
+public static partial class Array
 {
-    [GeneratedRegex("[,\\]]")]
+    [GeneratedRegex(@"[,\]]")]
     private static partial Regex DelimitersRegex();
 
-    [GeneratedRegex("[ \\n\\r\\t]")]
+    [GeneratedRegex(@"[ \n\r\t]")]
     private static partial Regex WhitespaceRegex();
 
     enum Mode
@@ -87,9 +87,6 @@ public partial class Array
                         pos++;
                         mode = Mode.End;
                     }
-                    break;
-
-                case Mode.End:
                     break;
 
                 default:

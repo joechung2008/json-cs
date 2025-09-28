@@ -3,12 +3,12 @@ using System.Text.RegularExpressions;
 
 namespace Shared.Parsers;
 
-public partial class Pair
+public static partial class Pair
 {
-    [GeneratedRegex("[ \\n\\r\\t\\},]")]
+    [GeneratedRegex(@"[ \n\r\t\},]")]
     private static partial Regex GetDelimitersRegex();
 
-    [GeneratedRegex("[ \\n\\r\\t]")]
+    [GeneratedRegex(@"[ \n\r\t]")]
     private static partial Regex GetWhitespaceRegex();
 
     enum Mode
@@ -25,12 +25,12 @@ public partial class Pair
         StringToken? key = null;
         var mode = Mode.Scanning;
         var pos = 0;
-        string slice;
         Token? value = null;
 
         while (pos < s.Length && mode != Mode.End)
         {
             var ch = s.Substring(pos, 1);
+            string slice;
 
             switch (mode)
             {
@@ -73,9 +73,6 @@ public partial class Pair
                     value = Value.Parse(slice, GetDelimitersRegex());
                     pos += value.Skip;
                     mode = Mode.End;
-                    break;
-
-                case Mode.End:
                     break;
 
                 default:

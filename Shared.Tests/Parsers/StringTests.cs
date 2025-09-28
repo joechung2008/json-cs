@@ -1,6 +1,6 @@
 using Shared.Models;
 
-namespace Shared.Tests;
+namespace Shared.Tests.Parsers;
 
 public class StringTests
 {
@@ -57,6 +57,6 @@ public class StringTests
     [Fact]
     public void Parse_InvalidString_ThrowsException()
     {
-        Assert.Throws<System.Exception>(() => Shared.Parsers.String.Parse("hello"));
+        Assert.Throws<Exception>(() => Shared.Parsers.String.Parse("hello"));
     }
 }

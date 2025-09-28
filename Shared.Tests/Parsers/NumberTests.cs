@@ -57,7 +57,7 @@ public class NumberTests
     [Fact]
     public void Parse_InvalidNumber_ThrowsException()
     {
-        Assert.Throws<System.Exception>(() => Shared.Parsers.Number.Parse("abc"));
+        Assert.Throws<Exception>(() => Shared.Parsers.Number.Parse("abc"));
     }
 
     [Fact]

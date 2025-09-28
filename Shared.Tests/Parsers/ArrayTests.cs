@@ -59,6 +59,6 @@ public class ArrayTests
     [Fact]
     public void Parse_InvalidArray_ThrowsException()
     {
-        Assert.Throws<System.Exception>(() => Shared.Parsers.Array.Parse("[1,]"));
+        Assert.Throws<Exception>(() => Shared.Parsers.Array.Parse("[1,]"));
     }
 }

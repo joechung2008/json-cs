@@ -41,6 +41,6 @@ public class ObjectTests
     [Fact]
     public void Parse_InvalidObject_ThrowsException()
     {
-        Assert.Throws<System.Exception>(() => Shared.Parsers.Object.Parse("{a:1}"));
+        Assert.Throws<Exception>(() => Shared.Parsers.Object.Parse("{a:1}"));
     }
 }

@@ -1,6 +1,6 @@
 using Shared.Models;
 
-namespace Shared.Tests;
+namespace Shared.Tests.Parsers;
 
 public class ValueParserTests
 {
@@ -70,6 +70,6 @@ public class ValueParserTests
     [Fact]
     public void Parse_InvalidValue_ThrowsException()
     {
-        Assert.Throws<System.Exception>(() => Shared.Parsers.Value.Parse("???"));
+        Assert.Throws<Exception>(() => Shared.Parsers.Value.Parse("???"));
     }
 }

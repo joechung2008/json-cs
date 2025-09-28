@@ -4,9 +4,9 @@ using System.Text.RegularExpressions;
 
 namespace Shared.Parsers;
 
-public partial class String
+public static partial class String
 {
-    [GeneratedRegex("[ \\n\\r\\t]")]
+    [GeneratedRegex(@"[ \n\r\t]")]
     private static partial Regex GetWhitespaceRegex();
 
     enum Mode
@@ -131,9 +131,6 @@ public partial class String
                     value += Convert.ToChar(hex);
                     pos += 4;
                     mode = Mode.Char;
-                    break;
-
-                case Mode.End:
                     break;
 
                 default:

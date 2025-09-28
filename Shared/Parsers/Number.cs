@@ -3,15 +3,15 @@ using System.Text.RegularExpressions;
 
 namespace Shared.Parsers;
 
-public partial class Number
+public static partial class Number
 {
-    [GeneratedRegex("\\d")]
+    [GeneratedRegex(@"\d")]
     private static partial Regex Digits();
 
     [GeneratedRegex("[1-9]")]
     private static partial Regex NonZeroDigits();
 
-    [GeneratedRegex("[ \\n\\r\\t]")]
+    [GeneratedRegex(@"[ \n\r\t]")]
     private static partial Regex Whitespace();
 
     enum Mode
@@ -182,9 +182,6 @@ public partial class Number
                     {
                         throw new Exception($"Expected digit, actual '{ch}'");
                     }
-                    break;
-
-                case Mode.End:
                     break;
 
                 default:

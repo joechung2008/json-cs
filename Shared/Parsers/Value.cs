@@ -3,12 +3,12 @@ using System.Text.RegularExpressions;
 
 namespace Shared.Parsers;
 
-public partial class Value
+public static partial class Value
 {
-    [GeneratedRegex("[\\-\\d]")]
+    [GeneratedRegex(@"[\-\d]")]
     private static partial Regex GetNumberRegex();
 
-    [GeneratedRegex("[ \\n\\r\\t]")]
+    [GeneratedRegex(@"[ \n\r\t]")]
     private static partial Regex GetWhitespaceRegex();
 
     enum Mode
@@ -28,12 +28,12 @@ public partial class Value
     {
         var mode = Mode.Scanning;
         var pos = 0;
-        string slice;
         Token? token = null;
 
         while (pos < s.Length && mode != Mode.End)
         {
             var ch = s.Substring(pos, 1);
+            string slice;
 
             switch (mode)
             {
@@ -148,9 +148,6 @@ public partial class Value
                     {
                         throw new Exception($"Expected 'true', actual '{slice}'");
                     }
-                    break;
-
-                case Mode.End:
                     break;
 
                 default:

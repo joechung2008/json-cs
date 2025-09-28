@@ -3,9 +3,9 @@ using System.Text.RegularExpressions;
 
 namespace Shared.Parsers;
 
-public partial class Object
+public static partial class Object
 {
-    [GeneratedRegex("[ \\n\\r\\t]")]
+    [GeneratedRegex(@"[ \n\r\t]")]
     private static partial Regex GetWhitespaceRegex();
 
     enum Mode
@@ -51,7 +51,7 @@ public partial class Object
                     }
                     else if (ch == "}")
                     {
-                        if (members.Count() > 0)
+                        if (members.Any())
                         {
                             throw new Exception("Unexpected ','");
                         }
@@ -88,9 +88,6 @@ public partial class Object
                     {
                         throw new Exception($"Expected ',' or '}}', actual '{ch}'");
                     }
-                    break;
-
-                case Mode.End:
                     break;
 
                 default:
