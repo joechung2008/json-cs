@@ -1,0 +1,31 @@
+# Build outputs
+**/bin/
+**/obj/
+
+# IDE files
+.vscode/
+.vs/
+**/*.user
+
+# Git
+.git/
+.gitignore
+
+# Docker files (exclude other Dockerfiles if not needed)
+Dockerfile*
+.dockerignore
+
+# Documentation
+README.md
+LICENSE
+
+# NuGet packages (legacy)
+packages/
+
+# Test results and logs
+TestResults/
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
