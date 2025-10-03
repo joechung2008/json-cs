@@ -1,3 +1,5 @@
+using Shared.Models;
+
 namespace Shared.Tests.Parsers;
 
 public class ObjectTests
@@ -42,5 +44,25 @@ public class ObjectTests
     public void Parse_InvalidObject_ThrowsException()
     {
         Assert.Throws<Exception>(() => Shared.Parsers.Object.Parse("{a:1}"));
+    }
+
+    [Fact]
+    public void Parse_ObjectWithNewlinesAndTabs_ReturnsObjectToken()
+    {
+        var token = Shared.Parsers.Object.Parse("{\n\t\"key\"\t:\n\t\"value\"\n\t}");
+        Assert.NotNull(token);
+        Assert.Single(token.Members);
+        Assert.Equal("key", token.Members.First().Key.Value);
+        Assert.Equal("value", ((StringToken)token.Members.First().Value).Value);
+        Assert.Equal(22, token.Skip);
+    }
+
+    [Fact]
+    public void Parse_ObjectWithLeadingWhitespace_ReturnsObjectToken()
+    {
+        var token = Shared.Parsers.Object.Parse("  {\"a\":1}");
+        Assert.NotNull(token);
+        Assert.Single(token.Members);
+        Assert.Equal(9, token.Skip);
     }
 }

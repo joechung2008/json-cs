@@ -5,7 +5,7 @@ namespace Shared.Parsers;
 
 public static partial class Array
 {
-    [GeneratedRegex(@"[,\]]")]
+    [GeneratedRegex(@"[ \n\r\t,\]]")]
     private static partial Regex DelimitersRegex();
 
     [GeneratedRegex(@"[ \n\r\t]")]

@@ -61,4 +61,33 @@ public class ArrayTests
     {
         Assert.Throws<Exception>(() => Shared.Parsers.Array.Parse("[1,]"));
     }
+
+    [Fact]
+    public void Parse_ArrayWithLeadingWhitespace_ReturnsArrayToken()
+    {
+        var token = Shared.Parsers.Array.Parse("  [1,2]");
+        Assert.NotNull(token);
+        Assert.Equal(2, token.Elements.Count());
+        Assert.Equal(7, token.Skip);
+    }
+
+    [Fact]
+    public void Parse_ArrayWithWhitespaceAroundElements_ReturnsArrayToken()
+    {
+        var token = Shared.Parsers.Array.Parse("[ 1 , 2 , 3 ]");
+        Assert.NotNull(token);
+        Assert.Equal(3, token.Elements.Count());
+        Assert.All(token.Elements, e => Assert.IsType<NumberToken>(e));
+        Assert.Equal(13, token.Skip);
+    }
+
+    [Fact]
+    public void Parse_ArrayWithNewlines_ReturnsArrayToken()
+    {
+        var token = Shared.Parsers.Array.Parse("[\n1,\n2\n]");
+        Assert.NotNull(token);
+        Assert.Equal(2, token.Elements.Count());
+        Assert.All(token.Elements, e => Assert.IsType<NumberToken>(e));
+        Assert.Equal(8, token.Skip);
+    }
 }

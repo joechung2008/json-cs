@@ -72,4 +72,26 @@ public class ValueParserTests
     {
         Assert.Throws<Exception>(() => Shared.Parsers.Value.Parse("???"));
     }
+
+    [Fact]
+    public void Parse_ArrayWithLeadingWhitespace_ReturnsArrayToken()
+    {
+        var token = Shared.Parsers.Value.Parse("  [1,2]");
+        Assert.IsType<Shared.Models.ArrayToken>(token);
+    }
+
+    [Fact]
+    public void Parse_NumberWithLeadingWhitespace_ReturnsNumberToken()
+    {
+        var token = Shared.Parsers.Value.Parse("  42");
+        Assert.IsType<Shared.Models.NumberToken>(token);
+        Assert.Equal(42d, ((Shared.Models.NumberToken)token).Value);
+    }
+
+    [Fact]
+    public void Parse_ObjectWithLeadingWhitespace_ReturnsObjectToken()
+    {
+        var token = Shared.Parsers.Value.Parse("  {\"a\":1}");
+        Assert.IsType<Shared.Models.ObjectToken>(token);
+    }
 }
